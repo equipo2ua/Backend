@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Management | New User{% endblock %}
+{% block content %}
+{% block extrahead %}
+    <script src="{% static 'core/vendor/jquery/jquery.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="{% static 'core/js/users.js' %}"></script>
+{% endblock %}
+    <main role="main">
+        <div class="container col-12 mt-3">
+            <div class="col-12  mt-3 border">
+                <h3>Nuevo Usuario</h3> 
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row"> 
+                        <div class="col-12 col-sm-8 mb-3">
+                            <label for="rut">Rut</label>
+                            <input type="text" name="rut"  required oninput="checkRut(this)" autofocus maxlength="254" required id="id_rut" class="form-control border border-danger" placeholder="Rut (Ej: 17605812-2)"/>
+                        </div>  
+                        <div class="col-12 col-sm-4 mb-3">
+                            <label for="email">Perfil</label>
+                            <select name="grupo" id="grupo" class="form-control border border-danger" required>
+                                <option value="">----------</option>
+                                {% for g in groups %}
+                                <option value="{{g.id}}">{{g.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>  
+                    </div>    
+                    <div class="row">                       
+                        <div class="col-12 col-sm-4 mb-3">
+                            <label for="name">Nombre (*)</label>
+                            <input type="text" class="form-control border border-danger" id="name" name="name" autofocus maxlength="254" required/>
+                        </div>
+                        <div class="col-12 col-sm-4 mb-3">
+                            <label for="last_name">Apellidos</label>
+                            <input type="text" class="form-control border border-danger" id="last_name1" name="last_name1" required/>
+                        </div>                        
+                        <div class="col-12 col-sm-4 mb-3">
+                            <label for="mobile">Ceelular</label>
+                            <input type="text" class="form-control border border-danger" id="mobile" name="mobile"/>
+                        </div>                        
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12 col-sm-12 mb-3">
+                            <label for="email">Correo (*)</label>
+                            <input type="email" class="form-control border border-danger" placeholder="nombre@ua.cl" name="email"/>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12 col-sm-6 mb-3">
+                            <input type="submit" value="Crear Usuario" class="btn btn-danger form-control">
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                            <a href="{% url 'users_main' %}" class="btn btn-danger form-control">Volver</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}

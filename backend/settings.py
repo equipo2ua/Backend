@@ -31,16 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'recolector',
-    'solicitudes',
-    'reciclador',
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'administrator',
+    'core',
+    'solicitudes',
+    'reciclador',
+    'recolector',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +85,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'backend',
         'USER': 'postgres',
-        'PASSWORD': 'entersandman59'
+        #'PASSWORD': 'entersandman59'
+        'PASSWORD': 'qwerty357'
     }
 }
 
@@ -125,3 +128,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Auth redirect
+LOGIN_REDIRECT_URL = 'check_group_main'
+LOGOUT_REDIRECT_URL = 'login'
+
+#Emails
+DEFAULT_FROM_EMAIL = ""
+EMAIL_HOST = ''
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+
+
+#media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}

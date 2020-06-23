@@ -1,0 +1,32 @@
+$( document ).ready(function() {
+    $('#userBlock').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var u_id = button.data('u_id')
+        var u_name = button.data('u_name') 
+        var page = button.data('page') 
+        var modal = $(this)
+        modal.find('.modal-title').text('DESEA BLOQUEAR AL USUARIO ' + u_name.toUpperCase())
+        modal.find('#u_id').val(u_id)
+        modal.find('#page').val(page)    
+        })        
+    $('#userActivate').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var u_id = button.data('u_id')
+        var u_name = button.data('u_name') 
+        var page = button.data('page') 
+        var modal = $(this)
+        modal.find('.modal-title').text('DESEA ACTIVAR AL USUARIO ' + u_name.toUpperCase())
+        modal.find('#u_id').val(u_id)
+        modal.find('#page').val(page)    
+        })    
+    $('#userDelete').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var u_id = button.data('u_id')
+        var u_name = button.data('u_name') 
+        var page = button.data('page') 
+        var modal = $(this)
+        modal.find('.modal-title').text('DESEA ELIMINAR AL USUARIO ' + u_name.toUpperCase())
+        modal.find('#u_id').val(u_id)
+        modal.find('#page').val(page)    
+        })            
+});

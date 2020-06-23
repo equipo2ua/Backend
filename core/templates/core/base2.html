@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Estilos -->
+    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'core/css/main.css' %}" rel="stylesheet">
+    <script src="{% static 'core/vendor/pace/pace.js' %}"></script>
+    <link href=" {% static 'core/vendor/pace/themes/pace-theme-bounce.css' %}" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+  </head>
+  <style>.head{background:#002D47;}.head_table{background:#002D47;opacity:1}.btn{background:#AF1E2D;border:#002D47}.txt{color:#FFF;}</style>
+  <body>
+    <body>
+      <!-- Navegación -->
+      <nav class="navbar navbar-expand-lg navbar-dark head">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ned" aria-controls="ned" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="ned">
+             <ul class="navbar-nav">
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'check_group_main' %}">
+                 <span class="txt">| Inicio</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">
+                 <span class="txt">| Salir</span>
+                </a>
+              </li>
+              {% endif%}
+          </div>
+        </div>
+      </nav>
+      <!-- Messages -->
+        {% if messages %}
+        <div class="alert alert-danger mt-3">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}         
+      <!-- End messages -->
+      <!-- Admin account -->
+      <!-- End admin account -->
+      <!-- Contenido -->
+      {% block content %}{% endblock %}
+      <!-- Javascript -->
+      <script src="{% static 'core/js/modal.js' %}"></script>  
+      <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'core/js/main.js' %}"></script>
+      <script src="{% static 'core/js/animateprogress.js' %}"></script>
+      <script src="{% static 'core/js/rut.js' %}"></script>    
+    </body>
+</html>

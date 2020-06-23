@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Management | New User{% endblock %}
+{% block content %}
+{% block extrahead %}
+    <script src="{% static 'core/vendor/jquery/jquery.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+{% endblock %}
+    <main role="main">
+        <div class="container col-12 mt-3">
+            <div class="col-12  mt-3 border">
+                <h3>Nuevo Usuario</h3> 
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ user_data.id }}" name="user_id" id="user_id">
+                    <input type="hidden" value="{{ page }}" name="page" id="page">
+                    <input type="hidden" value="{{ groups.id }}" name="grupo" id="grupo">
+                    <div class="row"> 
+                        <div class="col-12 col-sm-8 mb-3">
+                            <label for="rut">Rut</label>
+                            <input type="text" name="rut" id="id_rut"  value="{{profile_data.rut}}" class="form-control border border-danger" readonly/>
+                        </div>  
+                        <div class="col-12 col-sm-4 mb-3">
+                            <label for="email">Perfil</label>
+                            <input type="text" name="group" id="group" value="{{groups.name}}" class="form-control border border-danger" readonly/>
+                        </div>  
+                    </div>    
+                    <div class="row">                       
+                        <div class="col-12 col-sm-4 mb-3">
+                            <label for="name">Nombre (*)</label>
+                            <input type="text"  id="name" name="name" value="{{user_data.first_name}}" class="form-control border border-danger" required/>
+                        </div>
+                        <div class="col-12 col-sm-4 mb-3">
+                            <label for="last_name">Apellidos</label>
+                            <input type="text" id="last_name1" name="last_name1" value="{{user_data.last_name}}" class="form-control border border-danger" required/>
+                        </div>                        
+                        <div class="col-12 col-sm-4 mb-3">
+                            <label for="mobile">Ceelular</label>
+                            <input type="text" id="mobile" name="mobile" value="{{profile_data.mobile}}" class="form-control border border-danger" required/>
+                        </div>                        
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12 col-sm-8 mb-3">
+                            <label for="email">Correo (*)</label>
+                            <input type="email" id="email" name="email" value="{{user_data.email}}" class="form-control border border-danger" required/>
+                        </div>
+                        {% if groups.id != 5 %}
+                            <div class="col-12 col-sm-4 mb-3">
+                                <label for="position" id="label_position">Cargo</label>
+                                <input type="position" id="position" value="{{profile_data.position}}" name="position" class="form-control border border-danger"/>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="row"> 
+                        <div class="col-12 col-sm-6 mb-3">
+                            <input type="submit" value="Editar Usuario" class="btn btn-danger form-control">
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                            <a href="{% url 'list_user_active' groups.id page %}" class="btn btn-danger form-control">Volver</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
