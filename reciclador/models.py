@@ -4,14 +4,14 @@ from django.db import models
 
 class Reciclador(models.Model):
     nombre_reciclador = models.CharField(max_length = 50, null = False, blank = False)
-    apellido_reciclador = models.CharField(max_length = 50, null = False, blank = False)
-    telefono_reciclador = models.CharField(max_length = 12, null = False, blank = False)
-    correo_reciclador = models.EmailField(max_length = 12, null = False, blank = False)
-    notificaciones_rechazadas = models.CharField(max_length = 12, null = False, blank = False)
-    calificacion_recolector = models.FloatField()
-    estado = models.IntegerField()
-    cantidad_calificaciones = models.FloatField()
-    suma_calificaciones = models.FloatField()
+    apellido_reciclador = models.CharField(max_length = 100, null = False, blank = False)
+    telefono_reciclador = models.CharField(max_length = 50, null = False, blank = False)
+    correo_reciclador = models.EmailField(max_length = 50, null = False, blank = False)
+    notificaciones_rechazadas = models.CharField(max_length = 12, null = True, blank = True)
+    calificacion_recolector = models.FloatField(null = True, blank = True)
+    estado = models.CharField(max_length=240, null=True, blank=True, default="Activo")
+    cantidad_calificaciones = models.FloatField(null = True, blank = True)
+    suma_calificaciones = models.FloatField(null = True, blank = True)
 
     class Meta:
         verbose_name = "Reciclador"

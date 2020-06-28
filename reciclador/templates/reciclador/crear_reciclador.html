@@ -1,0 +1,115 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}User | Management{% endblock %}
+{% block content %}
+{% block extrahead %}
+    <script src="{% static 'core/vendor/jquery/jquery.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="{% static 'core/js/envia.js' %}"></script>
+{% endblock %}
+<main role="main">
+    <div class="container col-12 mt-3">
+        <div class="col-12  mt-3 border">
+            <h3>Nuevo Reciclador</h3> 
+            <form action="{% url 'add_reciclador' id_group %}" method="post">
+                {% csrf_token %}
+                <div class="row"> 
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="rut">Nombre (*)</label>
+                        <input type="text" name="nombre" autofocus maxlength="254" required class="form-control border border-danger" placeholder=""/>
+                    </div>
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="rut">Apellidos (*)</label>
+                        <input type="text" name="apellido" autofocus maxlength="254" required class="form-control border border-danger" placeholder=""/>
+                    </div>
+                    
+
+                </div>    
+                <div class="row">                     
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="rut">Telefono (*)</label>
+                        <input type="text" name="telefono" autofocus maxlength="254" required class="form-control border border-danger" placeholder=""/>
+                    </div>  
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="name">Correo (*)</label>
+                        <input type="text" class="form-control border border-danger"  name="correo" autofocus maxlength="254" required/>
+                    </div>                      
+                </div>
+
+                <h3>Dirección</h3>
+
+                <div class="row">         
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="name">Calle (*)</label>
+                        <input type="text" class="form-control border border-danger" name="calle" autofocus maxlength="254" required/>
+                    </div>  
+
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="name">Comuna (*)</label>
+                        <input list="comuna" type="text" class="form-control border border-danger"  name="comuna" autofocus maxlength="254" required/>
+
+                        <datalist id="comuna">
+                            <option value="Cerrillos">
+                            <option value="Cerro Navia">
+                            <option value="Conchalí">
+                            <option value="El Bosque">
+                            <option value="Estación Central">
+                            <option value="Huechuraba">
+                            <option value="Independencia">
+                            <option value="La Cisterna">
+                            <option value="La Florida">
+                            <option value="La Granja">
+                            <option value="La Pintana">
+                            <option value="La Reina">
+                            <option value="Las Condes">
+                            <option value="Lo Barnechea">
+                            <option value="Lo Espejo">
+                            <option value="Lo Prado">
+                            <option value="Macul">
+                            <option value="Maipú">
+                            <option value="Ñuñoa">
+                            <option value="Padre Hurtado">
+                            <option value="Pedro Aguirre Cerda">
+                            <option value="Peñalolén">
+                            <option value="Pirque">
+                            <option value="Providencia">
+                            <option value="Pudahuel">
+                            <option value="Puente Alto">
+                            <option value="Quilicura">
+                            <option value="Quinta Normal">
+                            <option value="Recoleta">
+                            <option value="Renca">
+                            <option value="San Bernardo">
+                            <option value="San Joaquín">
+                            <option value="San José de Maipo">
+                            <option value="San Miguel">
+                            <option value="San Ramón">
+                            <option value="Santiago">
+                            <option value="Vitacura">
+                    </div>
+                    
+                    <div class="col-12 col-sm-4 mb-3">
+                        
+                    </div>
+                    
+                      
+                </div>
+                
+                <div class="row"> 
+                    <div class="col-12 col-sm-6 mb-3">
+                        <input type="submit" value="Crear Reciclador" class="btn btn-danger form-control">
+                    </div>
+                    <div class="col-12 col-sm-6 mb-3">
+                        <a href="{% url 'list_main' id_group %}" class="btn btn-danger form-control">Volver</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock %}

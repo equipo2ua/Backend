@@ -14,6 +14,19 @@
             <div class="col-12  mt-3 border">
                 <h3>Listado Perfil {{group.name}} </h3> 
                 <div class="row mt-4 mb-4">
+                    {% if group.id == 2 %}
+                    <div class="col-12 col-sm-3 mb-3">
+                        <a href="{% url 'crear_reciclador' group.id %}" class="btn btn-danger form-control">Crear Reciclador</a>
+                    </div>
+                    <div class="col-12 col-sm-3 mb-3">
+                        <a href="{% url 'lista_reciclador' group.id %}" class="btn btn-danger form-control">Lista Reciclador</a>
+                    </div>
+                    {% endif %}
+                    {% if group.id == 3 %}
+                    <div class="col-12 col-sm-3 mb-3">
+                        <a href="#" class="btn btn-danger form-control">Crear Recolector</a>
+                    </div>
+                    {% endif %}
                     <div class="col-12 col-sm-3 mb-3">
                         <a href="{% url 'list_user_active' group.id %}" class="btn btn-danger form-control">Activos</a>
                     </div>
