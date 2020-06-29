@@ -83,9 +83,9 @@ DATABASES = {
     'default': {
         'HOST': 'localhost',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'backend',
+        'NAME': 'backend_reciclaje',
         'USER': 'postgres',
-        'PASSWORD': 'entersandman59',
+        'PASSWORD': 'F1n40123',
         
     }
 }

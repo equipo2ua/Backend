@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}User | Management{% endblock %}
+{% block content %}
+{% block extrahead %}
+    <script src="{% static 'core/vendor/jquery/jquery.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="{% static 'core/js/envia.js' %}"></script>
+{% endblock %}
+<main role="main">
+    <div class="container col-12 mt-3">
+        <div class="col-12  mt-3 border">
+            <h3>Nuevo Recolector</h3> 
+            <form action="{% url 'update_recolector' recolector.id %}" method="post">
+                {% csrf_token %}
+                <div class="row"> 
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="rut">Nombre (*)</label>
+                        <input type="text" name="nombre" autofocus maxlength="254" required class="form-control border border-danger" value="{{recolector.nombre_recolector}}" placeholder=""/>
+                    </div>
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="rut">Apellidos (*)</label>
+                        <input type="text" name="apellido" autofocus maxlength="254" required class="form-control border border-danger" value="{{recolector.apellido_recolector}}" placeholder=""/>
+                    </div>
+                    
+
+                </div>    
+                <div class="row">                     
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="rut">Telefono (*)</label>
+                        <input type="text" name="telefono" autofocus maxlength="254" required class="form-control border border-danger" value="{{recolector.telefono_recolector}}" placeholder=""/>
+                    </div>  
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="name">Correo (*)</label>
+                        <input type="text" class="form-control border border-danger"  name="correo" autofocus maxlength="254" value="{{recolector.correo_recolector}}" required/>
+                    </div>
+                    <div class="col-12 col-sm-4 mb-3">
+                        <label for="name">Numero Documento (*)</label>
+                        <input type="text" class="form-control border border-danger"  name="n_documento" autofocus maxlength="254" value="{{recolector.n_documento_recolector}}" required/>
+                    </div>                       
+                </div>
+
+                
+                
+                <div class="row"> 
+                    <div class="col-12 col-sm-6 mb-3">
+                        <input type="submit" value="Editar Recolector" class="btn btn-danger form-control">
+                    </div>
+                    <div class="col-12 col-sm-6 mb-3">
+                        <a href="{% url 'lista_recolector' 3 %}" class="btn btn-danger form-control">Volver</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock %}

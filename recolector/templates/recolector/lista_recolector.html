@@ -1,0 +1,97 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}User | Management{% endblock %}
+{% block content %}
+{% block extrahead %}
+    <script src="{% static 'core/vendor/jquery/jquery.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="{% static 'core/js/envia.js' %}"></script>
+{% endblock %}
+
+<main role="main">
+    <div class="col-12  mt-3 border table-responsive-xl">
+        <table class="table mt-2 table-hover table-sm table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th colspan="9"><h3>Listado Clientes</h3></th>
+                    <th colspan="3"><a href="{% url 'list_main' id_group %}" class="btn btn-primary form-control">Volver</a></th>
+                </tr>
+            </thead>
+        </table>
+        <table id="service" class="table mt-2 table-hover table-sm table-bordered ">
+            <thead class="table-primary">
+                <tr class="text-center">
+                    <th width="400" class="align-middle">Nombre</th>
+                    <th width="400" class="align-middle">Apellidos</th>
+                    <th width="400" class="align-middle">Telefono</th>
+                    <th width="400" class="align-middle">Correo</th>
+                    <th width="400" class="align-middle">Estado</th>
+                    <th width="" class="align-middle">Act/Bloq</th>
+                    <th width="" class="align-middle">Ver</th>
+                    <th width="" class="align-middle">Editar</th>
+                    <th width="" class="align-middle">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in registros %}
+                    <tr>
+                        <th>{{a.nombre_recolector}}</th>
+                        <th>{{a.apellido_recolector}}</th>
+                        <th>{{a.telefono_recolector}}</th>
+                        <th>{{a.correo_recolector}}</th>
+                        <th>{{a.estado}}</th>
+                        <th class="">
+                            <div class="row">
+                                <div class="col-12 col-sm-3 text-center">
+                                    {% if a.estado == 'Activo' %}
+                                        <a href="{% url 'bloquear' a.id %}" class="fas fa-close fa-lg nav-item" title="Bloquear Cliente"></a>
+                                    {% else %}
+                                        <a href="{% url 'activar' a.id %}" class="fas fa-check fa-lg nav-item" title="Activar Cliente"></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <a href="#" class="fas fa-eye fa-lg nav-item" title="Ver Cliente"></a>
+                        </th>
+                        <th>
+                            <a href="{% url 'editar_recolector' a.id %}" class="fas fa-pen-square" title="Editar Cliente"></a>
+                        </th>
+                        <th>
+                            <a href="#" class="fas fa-trash nav-item" title="Borrar Cliente" data-target="#{{a.id}}" data-toggle="modal"></a>
+                        </th>
+                        <div class="modal fade" id="{{a.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  ¿ESTAS SEGURO QUE QUIERES BORRAR AL USUARIO RECOLECTOR "{{a.id_recolector.nombre_recolector}}"?
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+
+                                  <form class="" action="{% url 'borrar' a.id %}" method="post">
+                                    {% csrf_token %}
+                                  <input type="submit" class="btn btn-primary" value="Borrar"/>
+                                  </form>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock %}

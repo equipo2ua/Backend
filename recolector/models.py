@@ -7,10 +7,11 @@ class Recolector(models.Model):
     apellido_recolector = models.CharField(max_length = 50, null = False, blank = False)
     correo_recolector = models.EmailField( null = False, blank = False)
     telefono_recolector = models.CharField( max_length = 50, null = False, blank = False)
-    calificacion_recolector = models.FloatField()
-    estado = models.IntegerField()
-    cantidad_calificaciones = models.FloatField()
-    suma_calificaciones = models.FloatField()
+    n_documento_recolector = models.CharField( max_length = 50, null = True, blank = False)
+    calificacion_recolector = models.FloatField(null = True, blank = True)
+    estado = models.CharField(max_length=240, null=True, blank=True, default="Activo")
+    cantidad_calificaciones = models.FloatField(null = True, blank = True)
+    suma_calificaciones = models.FloatField(null = True, blank = True)
 
     class Meta:
         verbose_name = 'Recolector'

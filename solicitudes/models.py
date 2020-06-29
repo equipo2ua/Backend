@@ -32,7 +32,7 @@ class Solicitud(models.Model):
 
     class Meta:
         verbose_name = "Solicitud"
-        verbose_name_plural = "Solitudes"
+        verbose_name_plural = "Solicitudes"
         
 
     def __str__(self):
