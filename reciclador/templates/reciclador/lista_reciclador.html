@@ -15,7 +15,7 @@
         <table class="table mt-2 table-hover table-sm table-bordered">
             <thead class="table-primary">
                 <tr>
-                    <th colspan="9"><h3>Listado Clientes</h3></th>
+                    <th colspan="9"><h3>Listado Recicladores</h3></th>
                     <th colspan="3"><a href="{% url 'list_main' id_group %}" class="btn btn-primary form-control">Volver</a></th>
                 </tr>
             </thead>
@@ -32,36 +32,38 @@
                     <th width="" class="align-middle">Ver</th>
                     <th width="" class="align-middle">Editar</th>
                     <th width="" class="align-middle">Borrar</th>
+                    <th width="" class="align-middle">Crear Solicitud</th>
                 </tr>
             </thead>
             <tbody>
                 {% for a in registros %}
                     <tr>
-                        <th>{{a.id_reciclador.nombre_reciclador}}</th>
-                        <th>{{a.id_reciclador.apellido_reciclador}}</th>
-                        <th>{{a.id_reciclador.telefono_reciclador}}</th>
-                        <th>{{a.id_reciclador.correo_reciclador}}</th>
-                        <th>{{a.id_reciclador.estado}}</th>
+                        <th>{{a.nombre_reciclador}}</th>
+                        <th>{{a.apellido_reciclador}}</th>
+                        <th>{{a.telefono_reciclador}}</th>
+                        <th>{{a.correo_reciclador}}</th>
+                        <th>{{a.estado}}</th>
                         <th class="">
                             <div class="row">
                                 <div class="col-12 col-sm-3 text-center">
-                                    {% if a.id_reciclador.estado == 'Activo' %}
-                                        <a href="{% url 'bloquear' a.id_reciclador.id %}" class="fas fa-close fa-lg nav-item" title="Bloquear Cliente"></a>
+                                    {% if a.estado == 'Activo' %}
+                                        <a href="{% url 'bloquear' a.id %}" class="fas fa-close fa-lg nav-item" title="Bloquear"></a>
                                     {% else %}
-                                        <a href="{% url 'activar' a.id_reciclador.id %}" class="fas fa-check fa-lg nav-item" title="Activar Cliente"></a>
+                                        <a href="{% url 'activar' a.id %}" class="fas fa-check fa-lg nav-item" title="Activar"></a>
                                     {% endif %}
                                 </div>
                             </div>
                         </th>
                         <th>
-                            <a href="#" class="fas fa-eye fa-lg nav-item" title="Ver Cliente"></a>
+                            <a href="{% url 'ver_reciclador' a.id %}" class="fas fa-eye fa-lg nav-item" title="Ver Reciclador"></a>
                         </th>
                         <th>
-                            <a href="{% url 'editar_reciclador' a.id %}" class="fas fa-pen-square" title="Editar Cliente"></a>
+                            <a href="{% url 'editar_reciclador' a.id %}" class="fas fa-pen-square" title="Editar Reciclador"></a>
                         </th>
                         <th>
-                            <a href="#" class="fas fa-trash nav-item" title="Borrar Cliente" data-target="#{{a.id}}" data-toggle="modal"></a>
+                            <a href="#" class="fas fa-trash nav-item" title="Borrar Reciclador" data-target="#{{a.id}}" data-toggle="modal"></a>
                         </th>
+                        <!-- Modal para eliminar datos -->
                         <div class="modal fade" id="{{a.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
@@ -87,6 +89,10 @@
                               </div>
                             </div>
                           </div>
+
+                          <th>
+                            <a href="{% url 'crear_solicitud' a.id %}" class="fas fa-user" title="Crear Solicitud "></a>
+                          </th>
                     </tr>
 
                 {% endfor %}

@@ -15,7 +15,7 @@
         <table class="table mt-2 table-hover table-sm table-bordered">
             <thead class="table-primary">
                 <tr>
-                    <th colspan="9"><h3>Listado Clientes</h3></th>
+                    <th colspan="9"><h3>Listado Recolectores</h3></th>
                     <th colspan="3"><a href="{% url 'list_main' id_group %}" class="btn btn-primary form-control">Volver</a></th>
                 </tr>
             </thead>
@@ -27,6 +27,7 @@
                     <th width="400" class="align-middle">Apellidos</th>
                     <th width="400" class="align-middle">Telefono</th>
                     <th width="400" class="align-middle">Correo</th>
+                    <th width="400" class="align-middle">N° Documento</th>
                     <th width="400" class="align-middle">Estado</th>
                     <th width="" class="align-middle">Act/Bloq</th>
                     <th width="" class="align-middle">Ver</th>
@@ -41,26 +42,27 @@
                         <th>{{a.apellido_recolector}}</th>
                         <th>{{a.telefono_recolector}}</th>
                         <th>{{a.correo_recolector}}</th>
+                        <th>{{a.n_documento_recolector}}</th>
                         <th>{{a.estado}}</th>
                         <th class="">
                             <div class="row">
                                 <div class="col-12 col-sm-3 text-center">
                                     {% if a.estado == 'Activo' %}
-                                        <a href="{% url 'bloquear' a.id %}" class="fas fa-close fa-lg nav-item" title="Bloquear Cliente"></a>
+                                        <a href="{% url 'bloquear_r' a.id %}" class="fas fa-close fa-lg nav-item" title="Bloquear"></a>
                                     {% else %}
-                                        <a href="{% url 'activar' a.id %}" class="fas fa-check fa-lg nav-item" title="Activar Cliente"></a>
+                                        <a href="{% url 'activar_r' a.id %}" class="fas fa-check fa-lg nav-item" title="Activar"></a>
                                     {% endif %}
                                 </div>
                             </div>
                         </th>
                         <th>
-                            <a href="#" class="fas fa-eye fa-lg nav-item" title="Ver Cliente"></a>
+                            <a href="#" class="fas fa-eye fa-lg nav-item" title="Ver Recolector"></a>
                         </th>
                         <th>
-                            <a href="{% url 'editar_recolector' a.id %}" class="fas fa-pen-square" title="Editar Cliente"></a>
+                            <a href="{% url 'editar_recolector' a.id %}" class="fas fa-pen-square" title="Editar Recolector"></a>
                         </th>
                         <th>
-                            <a href="#" class="fas fa-trash nav-item" title="Borrar Cliente" data-target="#{{a.id}}" data-toggle="modal"></a>
+                            <a href="#" class="fas fa-trash nav-item" title="Borrar Recolector" data-target="#{{a.id}}" data-toggle="modal"></a>
                         </th>
                         <div class="modal fade" id="{{a.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -72,13 +74,13 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  ¿ESTAS SEGURO QUE QUIERES BORRAR AL USUARIO RECOLECTOR "{{a.id_recolector.nombre_recolector}}"?
+                                  ¿ESTAS SEGURO QUE QUIERES BORRAR AL USUARIO RECOLECTOR "{{a.nombre_recolector}}"?
                                   
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
 
-                                  <form class="" action="{% url 'borrar' a.id %}" method="post">
+                                  <form class="" action="{% url 'borrar_r' a.id %}" method="post">
                                     {% csrf_token %}
                                   <input type="submit" class="btn btn-primary" value="Borrar"/>
                                   </form>

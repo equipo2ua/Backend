@@ -9,7 +9,8 @@ recolector_patterns = [
     path('update_recolector/<id>', views.update_recolector,name="update_recolector"),
     path('lista_recolector/<id>', views.lista_recolector,name="lista_recolector"),
     path('add_recolector/<id>', views.add_recolector,name="add_recolector"),
-    path('activar/<id>', views.activar,name="activar"),
-    path('bloquear/<id>', views.bloquear,name="bloquear"),
-    path('borrar/<id>', views.borrar,name="borrar"),
+    path('activar_r/<id>', views.activar_r,name="activar_r"),
+    path('bloquear_r/<id>', views.bloquear_r,name="bloquear_r"),
+    path('borrar_r/<id>', views.borrar_r,name="borrar_r"),
+    
     ]  

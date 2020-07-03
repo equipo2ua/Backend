@@ -19,6 +19,8 @@ from django.conf import settings
 from administrator.urls import administrator_patterns
 from reciclador.urls import reciclador_patterns
 from recolector.urls import recolector_patterns
+from solicitudes.urls import solicitud_patterns
+
 
 
 urlpatterns = [
@@ -27,6 +29,7 @@ urlpatterns = [
     path('administrator/', include(administrator_patterns)),
     path('reciclador/', include(reciclador_patterns)),
     path('recolector/', include(recolector_patterns)),
+    path('solicitud/', include(solicitud_patterns)),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.urls')),  
 

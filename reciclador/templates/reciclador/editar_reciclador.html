@@ -13,7 +13,7 @@
     <div class="container col-12 mt-3">
         <div class="col-12  mt-3 border">
             <h3>Nuevo Reciclador</h3> 
-            <form action="{% url 'update_reciclador' datos.id %}" method="post">
+            <form action="{% url 'update_reciclador' reciclador.id %}" method="post">
                 {% csrf_token %}
                 <div class="row"> 
                     <div class="col-12 col-sm-4 mb-3">
@@ -38,64 +38,6 @@
                     </div>                      
                 </div>
 
-                <h3>Dirección</h3>
-
-                <div class="row">         
-                    <div class="col-12 col-sm-4 mb-3">
-                        <label for="name">Calle (*)</label>
-                        <input type="text" class="form-control border border-danger" name="calle" autofocus maxlength="254" value="{{direccion.calle_direccion}}" required/>
-                    </div>  
-
-                    <div class="col-12 col-sm-4 mb-3">
-                        <label for="name">Comuna (*)</label>
-                        <input list="comuna" type="text" class="form-control border border-danger"  name="comuna" autofocus maxlength="254" value="{{direccion.id_comuna.nombre_comuna}}" required/>
-
-                        <datalist id="comuna">
-                            <option value="Cerrillos">
-                            <option value="Cerro Navia">
-                            <option value="Conchalí">
-                            <option value="El Bosque">
-                            <option value="Estación Central">
-                            <option value="Huechuraba">
-                            <option value="Independencia">
-                            <option value="La Cisterna">
-                            <option value="La Florida">
-                            <option value="La Granja">
-                            <option value="La Pintana">
-                            <option value="La Reina">
-                            <option value="Las Condes">
-                            <option value="Lo Barnechea">
-                            <option value="Lo Espejo">
-                            <option value="Lo Prado">
-                            <option value="Macul">
-                            <option value="Maipú">
-                            <option value="Ñuñoa">
-                            <option value="Padre Hurtado">
-                            <option value="Pedro Aguirre Cerda">
-                            <option value="Peñalolén">
-                            <option value="Pirque">
-                            <option value="Providencia">
-                            <option value="Pudahuel">
-                            <option value="Puente Alto">
-                            <option value="Quilicura">
-                            <option value="Quinta Normal">
-                            <option value="Recoleta">
-                            <option value="Renca">
-                            <option value="San Bernardo">
-                            <option value="San Joaquín">
-                            <option value="San José de Maipo">
-                            <option value="San Miguel">
-                            <option value="San Ramón">
-                            <option value="Santiago">
-                            <option value="Vitacura">
-                    </div>
-                    
-                    <div class="col-12 col-sm-4 mb-3">
-                        
-                    </div>
-                    
-                      
-                </div>
                 
                 <div class="row"> 
                     <div class="col-12 col-sm-6 mb-3">

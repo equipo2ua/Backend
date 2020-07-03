@@ -36,11 +36,11 @@ def editar_recolector(request, id):
     datos = Recolector.objects.get(pk=id)
     return render(request, "recolector/editar_recolector.html",{'recolector': datos})
 
-
 def update_recolector(request, id):
 
     datos = Recolector.objects.get(pk=id)
-    id_recolector = datos.id_recolector.id
+    id_recolector = datos.id
+
     if request.method == 'POST':
 
         nombre = request.POST.get('nombre')
@@ -68,21 +68,18 @@ def lista_recolector(request, id):
 
     return render(request, "recolector/lista_recolector.html", {'id_group': id_group, 'registros':registros})
 
-
-def bloquear(request, id):
+def bloquear_r(request, id):
 
     Recolector.objects.filter(pk=id).update(estado = 'Bloqueado')
     
     return redirect('lista_recolector', 3)
 
-
-def activar(request,id):
+def activar_r(request,id):
     Recolector.objects.filter(pk=id).update(estado = 'Activo')
     
     return redirect('lista_recolector', 3)
 
-
-def borrar(request, id):
+def borrar_r(request, id):
 
     Recolector.objects.get(pk=id).delete()
 
