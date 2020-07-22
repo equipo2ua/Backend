@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from reciclador import views
 from django.urls import path,include
 from django.conf import settings
 from administrator.urls import administrator_patterns
@@ -32,5 +33,6 @@ urlpatterns = [
     path('solicitud/', include(solicitud_patterns)),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.urls')),  
-
+    #rest-fram-path
+    path('data_api/',views.reciclador_data_rest),
 ]

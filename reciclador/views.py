@@ -3,6 +3,28 @@ from django.contrib.auth.models import User, Group, GroupManager
 from .models import Reciclador, Comuna, Direccion, Reciclador_Direccion
 # Create your views here.
 
+
+#rest-framework
+import json
+from . serializers import RecicladorSerializer
+from rest_framework import generics, viewsets
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.parsers import JSONParser
+
+@api_view(['GET'])
+def reciclador_data_rest(request, format=None):
+    data_recolector=Reciclador.objects.all()
+    data_serial=RecicladorSerializer(data_recolector, many=True)
+    return Response({'data_serial':data_serial.data})
+
+
+
+
+
+
+
 def crear_reciclador(request, id):
     group = Group.objects.get(pk=id)
     id_group = group.id

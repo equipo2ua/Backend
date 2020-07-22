@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'solicitudes',
     'reciclador',
     'recolector',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'backend',
         'USER': 'postgres',
-        'PASSWORD': 'entersandman59',
+        'PASSWORD': '122333',
         
     }
 }
