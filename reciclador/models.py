@@ -12,6 +12,10 @@ class Reciclador(models.Model):
     estado = models.CharField(max_length=240, null=True, blank=True, default="Activo")
     cantidad_calificaciones = models.FloatField(null = True, blank = True)
     suma_calificaciones = models.FloatField(null = True, blank = True)
+    #insercion de valores al modelo 
+    rut_reciclador = models.CharField(max_length=100, null=True, blank=True, verbose_name='Rut')
+    contraseña = models.CharField(max_length=100,null=True,blank=True,verbose_name='Contraseña')
+
 
     class Meta:
         verbose_name = "Reciclador"

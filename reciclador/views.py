@@ -23,8 +23,6 @@ def reciclador_data_rest(request, format=None):
 
 
 
-
-
 def crear_reciclador(request, id):
     group = Group.objects.get(pk=id)
     id_group = group.id
@@ -42,12 +40,14 @@ def add_reciclador(request, id):
         correo = request.POST.get('correo')
         calle = request.POST.get('calle')
         comuna = request.POST.get('comuna')
+        rut = request.POST.get('rut')
 
         reciclador_save = Reciclador(
             nombre_reciclador = nombre,
             apellido_reciclador = apellido,
             telefono_reciclador = telefono,
             correo_reciclador = correo,
+            rut_reciclador=rut,
         )
         reciclador_save.save()
 

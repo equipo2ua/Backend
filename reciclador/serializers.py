@@ -6,3 +6,5 @@ class RecicladorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model =Reciclador
         fields = ('nombre_reciclador','apellido_reciclador','telefono_reciclador','correo_reciclador')
+
+
