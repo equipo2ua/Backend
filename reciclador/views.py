@@ -6,18 +6,81 @@ from .models import Reciclador, Comuna, Direccion, Reciclador_Direccion
 
 #rest-framework
 import json
-from . serializers import RecicladorSerializer
+from .serializers import RecicladorSerializer
 from rest_framework import generics, viewsets
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import JSONParser
 
-@api_view(['GET'])
+@api_view(['POST'])
+def detalle_perfil_rest(request, format = None):
+    if request.method == 'POST':
+        js = json.loads(request.body)
+        correo =js.get('nombre')
+        constraseña = js.get('contraseña')
+
+
+        variable1 =Reciclador.objects.filter(correo_reciclador=correo).count()
+        if variable1 == 1:
+            Datos=Reciclador.objects.filter(correo_reciclador=correo).all()
+             
+            data_reciclador_serializada = RecicladorSerializer(Datos,many=True)
+
+            return Response(data_reciclador_serializada.data)
+        else:
+            return Response(["No existes"])
+
+
+
+
+@api_view(['POST'])
 def reciclador_data_rest(request, format=None):
-    data_recolector=Reciclador.objects.all()
-    data_serial=RecicladorSerializer(data_recolector, many=True)
-    return Response({'data_serial':data_serial.data})
+    if request.method == 'POST':
+
+        js = json.loads(request.body)
+
+        nombre = js.get('nombre')
+        apellido = js.get('apellido')
+        rut = js.get('rut')
+        correo = js.get('correo')
+        telefono = js.get('telefono')
+        calleynumero = js.get('calleynumero')
+        comuna = js.get('comuna')
+        contraseña = js.get('contraseña')
+        repetircontraseña = js.get('repetircontraseña')
+
+        data = Reciclador(
+            nombre_reciclador = nombre,
+            apellido_reciclador = apellido,
+            telefono_reciclador = telefono,
+            correo_reciclador = correo,
+        )
+        data.save()
+
+        return Response([
+            'Registro Guardado Exitosamente'
+        ])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

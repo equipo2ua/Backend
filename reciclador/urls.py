@@ -15,4 +15,9 @@ reciclador_patterns = [
     path('borrar/<id>', views.borrar,name="borrar"),
     path('guardar_direccion/<id>', views.guardar_direccion,name="guardar_direccion"),
     path('borrar_direccion/<id>', views.borrar_direccion,name="borrar_direccion"),
+    
+        
+    path('reciclador_data1/',views.reciclador_data_rest),
+    path('detalle_perfil_rest/',views.detalle_perfil_rest),
     ]  
+    
