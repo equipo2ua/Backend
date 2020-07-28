@@ -17,19 +17,23 @@ from rest_framework.parsers import JSONParser
 def detalle_perfil_rest(request, format = None):
     if request.method == 'POST':
         js = json.loads(request.body)
-        correo =js.get('nombre')
-        constraseña = js.get('contraseña')
+        correo = js.get('nombre')
+        contraseña = js.get('contraseña')
 
-
-        variable1 =Reciclador.objects.filter(correo_reciclador=correo).count()
-        if variable1 == 1:
-            Datos=Reciclador.objects.filter(correo_reciclador=correo).all()
-             
-            data_reciclador_serializada = RecicladorSerializer(Datos,many=True)
-
-            return Response(data_reciclador_serializada.data)
+        if correo == None:
+            return Response(["Ingresa correo"])
         else:
-            return Response(["No existes"])
+            variable1 = Reciclador.objects.filter(correo_reciclador=correo).count()
+            reciclador = Reciclador.objects.get(correo_reciclador=correo)
+            if reciclador.contraseña == contraseña:
+                if variable1 == 1:
+                    Datos=Reciclador.objects.filter(correo_reciclador=correo).all()
+
+                    data_reciclador_serializada = RecicladorSerializer(Datos,many=True)
+
+                    return Response(data_reciclador_serializada.data)
+                else:
+                    return Response(["No existes"])
 
 
 
@@ -37,7 +41,7 @@ def detalle_perfil_rest(request, format = None):
 @api_view(['POST'])
 def reciclador_data_rest(request, format=None):
     if request.method == 'POST':
-
+    
         js = json.loads(request.body)
 
         nombre = js.get('nombre')
@@ -50,18 +54,39 @@ def reciclador_data_rest(request, format=None):
         contraseña = js.get('contraseña')
         repetircontraseña = js.get('repetircontraseña')
 
-        data = Reciclador(
-            nombre_reciclador = nombre,
-            apellido_reciclador = apellido,
-            telefono_reciclador = telefono,
-            correo_reciclador = correo,
-        )
-        data.save()
+        if contraseña == repetircontraseña:
+            data = Reciclador(
+                nombre_reciclador = nombre,
+                apellido_reciclador = apellido,
+                telefono_reciclador = telefono,
+                correo_reciclador = correo,
+                contraseña = contraseña,
+                rut_reciclador = rut
+            )
+            data.save()
+
+            comuna_save = Comuna(
+                nombre_comuna = comuna,
+            )
+            comuna_save.save()
+
+            calle_save = Direccion(
+                calle_direccion = calleynumero,
+                id_comuna = comuna_save,
+            )
+            calle_save.save()
+
+            rec_dir_save = Reciclador_Direccion(
+                id_reciclador = data,
+                id_direccion = calle_save,
+            )
+            rec_dir_save.save() 
+        else:
+            return Response(['Contraseña no es idéntica'])
 
         return Response([
             'Registro Guardado Exitosamente'
         ])
-
 
 
 
